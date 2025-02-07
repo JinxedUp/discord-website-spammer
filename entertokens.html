@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Tokens</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://www.pixground.com/wp-content/uploads/2025/02/Jinx-Arcane-Season-2-Poster-4K-Wallpaper-1081x608-jpg.avif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            padding: 30px 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 2;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .description {
+            color: #ccc;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .tokenInput {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background-color: #3a3a5c;
+            color: #e6e6e6;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #ff007f;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+            outline: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #ff4f9b;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #e60066;
+            transform: scale(1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .tokenInput {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 10px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Enter Tokens</h1>
+        <p class="description">
+            Please enter your Discord tokens below. You can add up to 10 tokens for use with the Jinx Pack.
+        </p>
+        <form id="tokenForm" onsubmit="enterToken(); return false;">
+            <div id="tokensList">
+                <input type="password" class="tokenInput" placeholder="Enter your Discord token" required>
+            </div>
+            <button type="button" onclick="addTokenField()">Add Another Token</button>
+            <button type="submit">Enter Tokens</button>
+        </form>
+    </div>
+
+    <script>
+        // Add additional token input fields
+        function addTokenField() {
+            const tokensList = document.getElementById('tokensList');
+            const inputCount = tokensList.querySelectorAll('.tokenInput').length;
+            if (inputCount < 10) {
+                const newInput = document.createElement('input');
+                newInput.type = 'password';
+                newInput.className = 'tokenInput';
+                newInput.placeholder = 'Enter your Discord token';
+                tokensList.appendChild(newInput);
+            } else {
+                alert('Maximum of 10 tokens reached.');
+            }
+        }
+
+        // Process the tokens after they are entered
+        function enterToken() {
+            const tokens = Array.from(document.querySelectorAll('.tokenInput')).map(input => input.value).filter(Boolean);
+            if (tokens.length) {
+                sessionStorage.setItem('discordTokens', JSON.stringify(tokens));
+
+                // Redirect to Jinx Pack page
+                window.location.href = "jinxpack.html";
+            } else {
+                alert('Please enter at least one token.');
+            }
+        }
+    </script>
+</body>
+</html>
