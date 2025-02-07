@@ -131,7 +131,7 @@
     </div>
 
     <script>
-        // Add additional token input fields
+        
         function addTokenField() {
             const tokensList = document.getElementById('tokensList');
             const inputCount = tokensList.querySelectorAll('.tokenInput').length;
@@ -146,13 +146,13 @@
             }
         }
 
-        // Process the tokens after they are entered
+        
         function enterToken() {
             const tokens = Array.from(document.querySelectorAll('.tokenInput')).map(input => input.value).filter(Boolean);
             if (tokens.length) {
                 sessionStorage.setItem('discordTokens', JSON.stringify(tokens));
 
-                // Redirect to Jinx Pack page
+                
                 window.location.href = "jinxpack.html";
             } else {
                 alert('Please enter at least one token.');
