@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -30,7 +31,7 @@
             z-index: 1;
         }
 
-        .container {
+        .container, .features-container {
             text-align: center;
             max-width: 600px;
             width: 100%;
@@ -40,6 +41,28 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             z-index: 2;
+            margin-bottom: 20px;
+            opacity: 0; /* Start invisible */
+            animation: fadeIn 0.3s ease-in-out forwards; /* Faster animation */
+        }
+
+        .container {
+            animation-delay: 0.15s; /* Faster delay for the first bubble */
+        }
+
+        .features-container {
+            animation-delay: 0.3s; /* Faster delay for the second bubble */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Slight upward movement */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
@@ -54,6 +77,21 @@
             color: #ccc;
             font-size: 1.2rem;
             margin-bottom: 30px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .features h2 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .features p {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             line-height: 1.6;
             font-weight: 400;
         }
@@ -92,6 +130,14 @@
                 font-size: 1rem;
             }
 
+            .features h2 {
+                font-size: 1.5rem;
+            }
+
+            .features p {
+                font-size: 1rem;
+            }
+
             button {
                 font-size: 1rem;
                 padding: 10px 25px;
@@ -107,6 +153,21 @@
             One of the best Discord spammers available on PC, Mobile, Samsung Fridge, and any device connected to the internet. All available online.
         </p>
         <button onclick="window.location.href='entertokens.html'">Join in on the spam</button>
+    </div>
+
+    <!-- Features Section in a Separate Bubble -->
+    <div class="features-container">
+        <div class="features">
+            <h2>Why Choose Jinx Pack?</h2>
+            <p>
+                <strong>No Python? No Problem</strong><br>
+                You can run this anywhere on anything without needing to download languages such as Python or Node. All you need now to start spamming is access to the internet! This can run even on 20+ year old hardware with less than 500MB of RAM available.
+            </p>
+            <p>
+                <strong>High Reliability</strong><br>
+                As long as you have the browser with this tab opened, it will run the spammer. If you have an extra phone or PC, you can start the spammer, then plug the device into the outlet and destroy every wannabe packer coming in your direction. Jinx Pack has been built to handle all possible errors and was made with one objective: spam no matter what.
+            </p>
+        </div>
     </div>
 </body>
 </html>
