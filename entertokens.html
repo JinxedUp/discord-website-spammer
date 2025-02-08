@@ -40,6 +40,19 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             z-index: 2;
+            opacity: 0; /* Start invisible */
+            animation: fadeIn 0.3s ease-in-out forwards; /* Faster animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Slight upward movement */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
@@ -131,7 +144,7 @@
     </div>
 
     <script>
-        
+        // Function to add a new token input field
         function addTokenField() {
             const tokensList = document.getElementById('tokensList');
             const inputCount = tokensList.querySelectorAll('.tokenInput').length;
@@ -146,13 +159,13 @@
             }
         }
 
-        
+        // Function to handle token submission
         function enterToken() {
             const tokens = Array.from(document.querySelectorAll('.tokenInput')).map(input => input.value).filter(Boolean);
             if (tokens.length) {
                 sessionStorage.setItem('discordTokens', JSON.stringify(tokens));
 
-                
+                // Redirect to the Jinx Pack page
                 window.location.href = "jinxpack.html";
             } else {
                 alert('Please enter at least one token.');
